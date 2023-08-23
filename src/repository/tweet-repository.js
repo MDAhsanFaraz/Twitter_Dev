@@ -1,4 +1,3 @@
-const { response, text } = require('express');
 const Tweet = require('../models/tweet');
 
 class TweetRepository {
@@ -21,16 +20,16 @@ class TweetRepository {
 
     async getWithComments(id) {
         try {
-            const tweet = await Tweet.findById(id).populate({path:'comments'});
+            const tweet = await Tweet.findById(id).populate({ path: 'comments' }).lean();
             return tweet;
         } catch (error) {
             console.log(error);
         }
     }
 
-    async update(tweetId,data) {
+    async update(tweetId, data) {
         try {
-            const tweet = await Tweet.findByIdAndUpdate(tweetId,data,{new:true});
+            const tweet = await Tweet.findByIdAndUpdate(tweetId, data, { new: true });
             return tweet;
         } catch (error) {
             console.log(error);
@@ -45,6 +44,14 @@ class TweetRepository {
             console.log(error);
         }
     }
+    async getAll(offset, limit) {
+        try {
+            const tweet = await Tweet.find().skip(offset).limit(limit);
+            return tweet;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
-module.exports=TweetRepository;
+module.exports = TweetRepository;
