@@ -11,7 +11,7 @@ app.listen(3000, async () => {
           console.log('Mongo db connected');
           
           const tweetrepo=new TweetRepository();
-          const tweet=await tweetrepo.getAll(0,7);
-          console.log(tweet[0].contentWithEmail);
-
-}) 
+          // const tweet =await tweetrepo.create({content:'With hooks'})          
+          // console.log(tweet);
+          // console.log(tweet);
+});
