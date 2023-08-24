@@ -11,5 +11,5 @@ app.listen(3000, async () => {
     console.log('Mongo db connected');
 
     let ser=new service();
-    await ser.create({content:'this is #Sparta'})
+    await ser.create({content:'this is #ONsda'})
 });
