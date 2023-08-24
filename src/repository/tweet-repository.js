@@ -27,7 +27,7 @@ class TweetRepository {
         }
     }
 
-    async destroy() {
+    async destroy(id) {
         try {
             const tweet = await Tweet.findByIdAndRemove(id);
             return tweet;
