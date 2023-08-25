@@ -2,7 +2,7 @@ import {HashtagRepository,TweetRepository }from "../repository/index.js";
 
 class TweetService {
     constructor() {
-        this.tweetRepsitory = new TweetRepository();
+        this.tweetRepository = new TweetRepository();
         this.hashtagRepository = new HashtagRepository();
     }
     async create(data){
@@ -11,7 +11,7 @@ class TweetService {
         let tags=content.match(/#[a-zA-Z0-9_]+/g);//this regex extracts hashtags
         tags  = tags.map((tag)=>tag.substring(1).toLowerCase());
         
-        const tweet=await this.tweetRepsitory.create(data);
+        const tweet=await this.tweetRepository.create(data);
 
         let alreadyPresentTags=await this.hashtagRepository.findByName(tags)
         let titleOfPresenttags=alreadyPresentTags.map(tags=>tags.title);
@@ -30,6 +30,12 @@ class TweetService {
         })
         return tweet;
     }
+
+    async get(tweetId) {
+        const tweet = await this.tweetRepository.getWithComments(tweetId);
+        return tweet;
+    }
 }
+
 
 export default TweetService;
