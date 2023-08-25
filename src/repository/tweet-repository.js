@@ -1,4 +1,3 @@
-import { response } from "express";
 import Tweet from "../models/tweet.js";
 import CrudRepository from "./crud-repository.js";
 
