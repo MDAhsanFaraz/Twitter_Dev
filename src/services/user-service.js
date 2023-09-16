@@ -1,4 +1,3 @@
-import e from 'express';
 import { UserRepository } from '../repository/index.js'
 class UserService {
     constructor() {
